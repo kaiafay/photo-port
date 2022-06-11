@@ -26,14 +26,14 @@ function Nav(props) {
                     <li className='mx-2'>
                         <a data-testid='about' href='#about' onClick={() => setContactSelected(false)}>About Me</a>
                     </li>
-                    <li>
+                    <li className={`mx-2 ${contactSelected && 'navActive'}`}>
                         <span onClick={() => setContactSelected(true)}>Contact</span>
                     </li>
                     {/* when mapping over an array in JSX, return only a single JSX element */}
                     {categories.map((category) => (
                         // when mapping over anything in JSX, the outermost element must have a key attribute that is unique
                         // this helps React keep track of items in the virtual DOM
-                        <li className={`mx-1 ${currentCategory.name === category.name && 'navActive'}`} key={category.name}>
+                        <li className={`mx-1 ${currentCategory.name === category.name && !contactSelected && 'navActive'}`} key={category.name}>
                             <span onClick={() => {setCurrentCategory(category); setContactSelected(false)}}>{capitalizeFirstLetter(category.name)}</span>
                         </li>
                     ))}
